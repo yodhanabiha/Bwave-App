@@ -25,4 +25,12 @@
     <string name="account">Account</string>
     <string name="account_scrty">Account Security</string>
     <string name="logout">Log out</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save">Save</string>
+    <string name="please_fill">Please fill in all data!</string>
+    <string name="bio">Bio</string>
+    <string name="bio_err">The input must not exceed 25 characters</string>
+    <string name="other_inf">Other Info</string>
+    <string name="edit_bg">Edit Background</string>
+    <string name="edit_photo">Edit Photo</string>
 </resources>

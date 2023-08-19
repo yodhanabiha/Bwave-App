@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,19 +20,26 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
 
+    var isUpload by mutableStateOf(false)
+
     suspend fun addData(dataUser: RegisterUser, context: Context, navController: NavController) {
         try {
+            isUpload = true
             val response = RetrofitClient.instance.register(dataUser)
             if (response.isSuccessful) {
                 Toast.makeText(context, "account registered successfully", Toast.LENGTH_LONG).show()
+                isUpload = false
                 navController.navigate(Screens.LoginScreen.route)
                 Log.d("SUCCESS", "addData: $response")
             } else {
+                isUpload = false
                 Toast.makeText(context, "registered email is already in use", Toast.LENGTH_LONG).show()
                 Log.d("GAGAL", "addData: $response")
             }
+
         } catch (e: Exception) {
             Log.d("ERR", "addData: $e")
+            isUpload = false
         }
     }
 

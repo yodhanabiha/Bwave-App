@@ -14,4 +14,6 @@ val primary =  Color(0xFF3A6DB8)
 
 val lightGray = Color(0xFFD9D9D9)
 val textGray = Color(0x4D000000)
-val bg = Color(0x66D9D9D9)
+val bg = Color(0xFFF8F3F3)
+
+val grayTransparent = Color(0x4D000000)

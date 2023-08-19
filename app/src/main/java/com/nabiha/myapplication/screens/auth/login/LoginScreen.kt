@@ -163,7 +163,7 @@ fun LoginScreen(
                         if (emailErr) {
                             ErrorMessage(
                                 text = stringResource(id = R.string.email_err),
-                                modifier = Modifier.padding(bottom = 20.dp)
+                                modifier = Modifier.padding(bottom = 20.dp).fillMaxWidth()
                             )
                         }
 
@@ -208,7 +208,7 @@ fun LoginScreen(
                         if (passwordErr) {
                             ErrorMessage(
                                 text = stringResource(id = R.string.password_err),
-                                modifier = Modifier.padding(bottom = 12.dp)
+                                modifier = Modifier.padding(bottom = 12.dp).fillMaxWidth()
                             )
                         }
                         //forgot password

@@ -4,7 +4,8 @@ data class DataUser(
     val id: Int = 0,
     val username: String = "",
     val number: String = "",
-    val photoUri: String? = null,
+    var photoUri: String? = null,
     val email: String = "",
-    val photoUriBg: String? = null
+    var photoUriBg: String? = null,
+    val bio: String? = null
 )

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.consumedWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -59,8 +61,7 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxSize()
                 //.padding(innerPadding)
-                .consumeWindowInsets(innerPadding)
-            ,
+                .consumeWindowInsets(innerPadding),
             navController = navController,
             auth = authentication,
         )
@@ -109,16 +110,20 @@ fun RowScope.AddItem(
         onClick = {
             navController.navigate(screen.route)
         },
-//        label = {
-//            Text(text = screen.title, style = MaterialTheme.typography.labelSmall)
-//        },
+        label = {
+            Text(text = screen.title, style = MaterialTheme.typography.bodyMedium)
+        },
         icon = {
-            Icon(painter = painterResource(id = screen.icon), contentDescription = "")
+            Icon(
+                painter = painterResource(id = screen.icon),
+                contentDescription = "",
+                modifier = Modifier.size(28.dp)
+            )
         },
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = Color.White,
+            selectedIconColor = primary,
             selectedTextColor = primary,
-            indicatorColor = primary,
+            indicatorColor = Color.White,
             unselectedIconColor = Color.Black,
             unselectedTextColor = Color.Black
         )

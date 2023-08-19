@@ -18,8 +18,7 @@ fun ErrorMessage(text: String, modifier: Modifier){
         text = text,
         style = MaterialTheme.typography.bodySmall,
         textAlign = TextAlign.Start,
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         color = Color.Red,
     )
 }

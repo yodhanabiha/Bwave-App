@@ -5,10 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.nabiha.myapplication.data.database.PreferenceDatastore
 import com.nabiha.myapplication.screens.auth.login.LoginScreen
 import com.nabiha.myapplication.screens.auth.register.RegisterScreen
-import com.nabiha.myapplication.screens.profile.ProfileScreen
+import com.nabiha.myapplication.screens.profile.index.ProfileScreen
+import com.nabiha.myapplication.screens.profile.update.UpdateProfileScreen
 
 @Composable
 fun MainNavGraph(
@@ -40,6 +40,10 @@ fun MainNavGraph(
             }
             composable(Screens.RegisterScreen.route) {
                 RegisterScreen(navController)
+            }
+            composable(Screens.UpdateProfileScreen.route){
+                UpdateProfileScreen(navController)
+
             }
 
 

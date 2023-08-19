@@ -28,6 +28,5 @@ fun AnimationLoading(modifier: Modifier){
         )
         Text(text = "LOADING...", style = MaterialTheme.typography.titleLarge)
     }
-
-
 }
+
