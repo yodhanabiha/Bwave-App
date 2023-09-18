@@ -1,14 +1,14 @@
 package com.nabiha.myapplication.main
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.consumedWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -34,7 +36,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.nabiha.myapplication.data.database.PreferenceDatastore
+import com.nabiha.myapplication.component.AnimationLoading
 import com.nabiha.myapplication.navigation.BottomBarScreen
 import com.nabiha.myapplication.navigation.MainNavGraph
 import com.nabiha.myapplication.ui.theme.primary
@@ -49,6 +51,7 @@ fun MainScreen(
     var authentication: Boolean? by remember {
         mutableStateOf(null)
     }
+    val isloading = mainViewModel.isLoading
 
     LaunchedEffect(Unit) {
         mainViewModel.checkLogin { isLoggedIn ->
@@ -57,14 +60,24 @@ fun MainScreen(
     }
 
     Scaffold(bottomBar = { BottomBar(navController = navController) }) { innerPadding ->
-        MainNavGraph(
-            modifier = Modifier
-                .fillMaxSize()
-                //.padding(innerPadding)
-                .consumeWindowInsets(innerPadding),
-            navController = navController,
-            auth = authentication,
-        )
+        if (isloading){
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 200.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                AnimationLoading(modifier = Modifier.wrapContentSize())
+            }
+        }else{
+            MainNavGraph(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = innerPadding.calculateBottomPadding()),
+                navController = navController,
+                auth = authentication
+            )
+        }
     }
 
 }
@@ -84,7 +97,7 @@ fun BottomBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     AnimatedVisibility(visible = routes.any { it == currentDestination?.route }) {
-        NavigationBar(modifier = Modifier.fillMaxWidth(), containerColor = Color.White) {
+        NavigationBar(modifier = Modifier.fillMaxWidth().shadow(elevation = 16.dp), containerColor = Color.White) {
             screens.forEach { screen ->
                 AddItem(
                     screen = screen,

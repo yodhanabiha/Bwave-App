@@ -50,12 +50,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.nabiha.myapplication.R
-import com.nabiha.myapplication.data.database.PreferenceDatastore
 import com.nabiha.myapplication.data.model.user.LoginUser
-import com.nabiha.myapplication.material.ButtonAnimation
-import com.nabiha.myapplication.material.ErrorMessage
-import com.nabiha.myapplication.material.OutlinedButtonAnimation
-import com.nabiha.myapplication.material.TopStatusBar
+import com.nabiha.myapplication.component.ButtonAnimation
+import com.nabiha.myapplication.component.ErrorMessage
+import com.nabiha.myapplication.component.OutlinedButtonAnimation
+import com.nabiha.myapplication.component.TopStatusBar
 import com.nabiha.myapplication.navigation.Screens
 import com.nabiha.myapplication.ui.theme.bg
 import com.nabiha.myapplication.ui.theme.primary

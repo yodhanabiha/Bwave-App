@@ -9,6 +9,8 @@ import com.nabiha.myapplication.screens.auth.login.LoginScreen
 import com.nabiha.myapplication.screens.auth.register.RegisterScreen
 import com.nabiha.myapplication.screens.profile.index.ProfileScreen
 import com.nabiha.myapplication.screens.profile.update.UpdateProfileScreen
+import com.nabiha.myapplication.screens.search.detail.DetailSearchScreen
+import com.nabiha.myapplication.screens.search.index.SearchScreen
 
 @Composable
 fun MainNavGraph(
@@ -33,7 +35,7 @@ fun MainNavGraph(
 
             }
             composable(BottomBarScreen.Search.route) {
-
+                SearchScreen(navController)
             }
             composable(Screens.LoginScreen.route) {
                 LoginScreen(navController)
@@ -43,7 +45,12 @@ fun MainNavGraph(
             }
             composable(Screens.UpdateProfileScreen.route){
                 UpdateProfileScreen(navController)
-
+            }
+            composable(Screens.DetailSearchScreen.route){
+                DetailSearchScreen(
+                    navController = navController,
+                    id = it.arguments?.getString("id")!!.toInt()
+                )
             }
 
 

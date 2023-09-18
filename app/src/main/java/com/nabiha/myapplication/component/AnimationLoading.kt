@@ -1,4 +1,4 @@
-package com.nabiha.myapplication.material
+package com.nabiha.myapplication.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme

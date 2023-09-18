@@ -13,6 +13,7 @@ import kotlinx.coroutines.withContext
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme

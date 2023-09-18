@@ -1,7 +1,6 @@
 package com.nabiha.myapplication.screens.profile.index
 
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
@@ -53,18 +52,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.nabiha.myapplication.R
-import com.nabiha.myapplication.material.AnimationLoading
-import com.nabiha.myapplication.material.ButtonAnimationIcon
-import com.nabiha.myapplication.material.TopStatusBar
+import com.nabiha.myapplication.component.AnimationLoading
+import com.nabiha.myapplication.component.ButtonAnimationIcon
+import com.nabiha.myapplication.component.TopStatusBar
 import com.nabiha.myapplication.navigation.Screens
 import com.nabiha.myapplication.ui.theme.bg
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -95,7 +91,7 @@ fun ProfileScreen(
     val isLoading = profileViewModel.isLoading
     val isUpload = profileViewModel.isUpload
 
-    if (isLoading || isUpload) {
+    if (isUpload) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -116,6 +112,7 @@ fun ProfileScreen(
             rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
                 photoUriBg = uri
             }
+
 
         ModalBottomSheetLayout(
             sheetContent = {
@@ -172,7 +169,7 @@ fun ProfileScreen(
 
                     BottomSheet(
                         icon = R.drawable.icn_edit_user,
-                        modifier = Modifier.padding(bottom = 100.dp),
+                        modifier = Modifier.padding(bottom = 24.dp),
                         backgroundIconColor = Color(0xFF73B2D6),
                         text = stringResource(id = R.string.edit_profile)
                     ) {
@@ -181,8 +178,7 @@ fun ProfileScreen(
 
                 }
             },
-            sheetState = modalSheetState,
-            modifier = Modifier.padding(bottom = 40.dp)
+            sheetState = modalSheetState
         ) {
             Box(
                 modifier = Modifier
